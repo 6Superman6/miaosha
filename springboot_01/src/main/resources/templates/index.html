@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>新冠病毒数据统计</title>
+</head>
+<body>
+    <h1 th:text="${day}+'（截止到2020-03-01）'" align="center" style="color: lightseagreen;">全国疫情数据一览</h1>
+    <h3 align="center" th:text="${cnt1}"></h3>
+    <h3 align="center" th:text="${cnt2}"></h3>
+    <h3 align="center" th:text="${cnt3}"></h3>
+    <h3 align="center" th:text="${cnt4}"></h3>
+    <h4 align="center"><a th:href="@{/before(cnt=${cnt},day=${day})}">前一天</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a th:href="@{/after(cnt=${cnt},day=${day})}">后一天</a></h4>
+    <table align="center" border="1">
+        <tr>
+            <th>省份</th>
+            <th>确诊人数</th>
+            <th>疑似人数</th>
+            <th>治愈人数</th>
+            <th>死亡人数</th>
+            <th>占全国确诊比例</th>
+            <th>占全国疑似比例</th>
+            <th>占全国治愈比例</th>
+            <th>占全国死亡比例</th>
+        </tr>
+        <tr  th:each="dxyarea : ${dxyarealist}" >
+            <th th:text="${dxyarea.provinceName}"></th>
+            <th th:text="${dxyarea.provinceConfirmedcount}"></th>
+            <th th:text="${dxyarea.provinceSuspectedcount}"></th>
+            <th th:text="${dxyarea.provinceCuredcount}"></th>
+            <th th:text="${dxyarea.provinceDeadcount}"></th>
+            <th th:text="${dxyarea.precent}"></th>
+            <th th:text="${dxyarea.supectedPercent}"></th>
+            <th th:text="${dxyarea.curedPercent}"></th>
+            <th th:text="${dxyarea.deadPercent}"></th>
+        </tr>
+    </table>
+</body>
+</html>

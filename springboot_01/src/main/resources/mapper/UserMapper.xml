@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.mapper.UserMapper">
+
+    <insert id="insert" parameterType="demo.model.User">
+        insert into user(id,age,name,date) values(#{id},#{age},#{name},#{date})
+    </insert>
+    <delete id="delete" parameterType="int">
+        delete from user where id=#{id}
+    </delete>
+
+    <update id="update" parameterType="demo.model.User">
+        update user set age=#{age},name=#{name},date=#{date} where id=#{id}
+    </update>
+    
+    <!--<update id="update" parameterType="User">-->
+        <!--update user-->
+        <!--<set>-->
+            <!--<if test="age != null">-->
+                <!--age=#{age}-->
+            <!--</if>-->
+            <!--<if test="name != null">-->
+                <!--name=#{name},-->
+            <!--</if>-->
+            <!--<if test="date != null">-->
+                <!--date=#{date},-->
+            <!--</if>-->
+            <!--where id=#{id}-->
+        <!--</set>-->
+    <!--</update>-->
+
+    <select id="get" parameterType="int" resultType="demo.model.User">
+        select * from user where id=#{id}
+    </select>
+
+    <select id="findAll" resultType="demo.model.User">
+        select * from user
+    </select>
+
+    <select id="getCountById" parameterType="int" resultType="int">
+        select count(*) from user where id=#{id}
+    </select>
+    
+    <select id="getyName" parameterType="String" resultType="demo.model.User">
+        select * from user where name=#{name}
+    </select>
+
+    <select id="getOne" resultType="User">
+        select * from user where name=#{name} and pw=#{pw}
+    </select>
+    
+    <select id="getUserByNameAndPw" resultType="User">
+        SELECT * from user where name=#{name} and pw=#{pw}
+    </select>
+
+    <select id="getList"  resultType="User">
+         SELECT * from user where id=#{list[0]}
+    </select>
+
+    <select id="getUserByid"  resultType="User">
+        SELECT * from user where id=#{array[0]}
+    </select>
+
+    <!--collection名字,item当前遍历的对象,index索引，separator表示以什么分割,open代表整条foreach的开头，close表示整条foreach结尾,如下-->
+    <!--  SELECT * from user where id IN （1，2，3，4）  -->
+    <select id="getUserByid2"  resultType="User">
+       SELECT * from user where id IN
+       <foreach collection="a" item="id" index="i" open="(" close=")" separator=",">
+          #{id}
+       </foreach>
+    </select>
+
+
+
+
+
+</mapper>
