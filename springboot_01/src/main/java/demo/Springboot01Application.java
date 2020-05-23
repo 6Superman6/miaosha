@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan
-@MapperScan("demo.mapper")
+@MapperScan({"demo.mapper","demo.redis"})
 public class Springboot01Application {
 
 	public static void main(String[] args) {

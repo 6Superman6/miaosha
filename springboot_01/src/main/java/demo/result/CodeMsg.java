@@ -43,10 +43,15 @@ public class CodeMsg {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	
+
+	/**
+	 * 返回一个带有参数的异常
+	 * @param args
+	 * @return
+	 */
 	public CodeMsg fillArgs(Object... args) {
-		int code = this.code;
-		String message = String.format(this.msg, args);
+		int code = this.code;							  // 参数校验异常：%s
+		String message = String.format(this.msg, args);  // 原始的msg拼上一个参数
 		return new CodeMsg(code, message);
 	}
 

@@ -7,6 +7,7 @@ import demo.utils.ServerResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service("userService")
@@ -154,5 +155,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             return ServerResponse.createByError("用户名不存在");
         }
         return ServerResponse.createBySuccess("用户数据",user);
+    }
+
+    @Override
+    public User getById(int id) {
+        return new User(id,21,"chaoge",new Date());
     }
 }
